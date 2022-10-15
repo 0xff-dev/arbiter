@@ -97,8 +97,8 @@ function test_obi {
 			kubectl get obi -n ${ARBITER_NS} -oyaml
 			kubectl get nodes --show-labels
 			kubectl get po -n ${ARBITER_NS} --show-labels
+			exit $s
 		fi
-		exit $s
 	done
 
 	echo "deploy policies wait 30s"
