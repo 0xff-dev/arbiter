@@ -106,7 +106,7 @@ function test_obi {
 	sleep 30
 
 	for i in $(seq 1 6); do
-		[ $( (kubectl get ObservabilityActionPolicy -n ${ARBITER_NS} | grep -v "NAME") | awk '{print NR}' | tail -n1) -eq 8 ] && s=0 && break || s=$? && sleep 10
+		[ $(kubectl get ObservabilityActionPolicy -n ${ARBITER_NS} | grep -v "NAME" | awk '{print NR}' | tail -n1) -eq 8 ] && s=0 && break || s=$? && sleep 10
 	done
 	(exit $s)
 	if [ $? -ne 0 ]; then
