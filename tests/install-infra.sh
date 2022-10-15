@@ -100,6 +100,11 @@ function test_obi {
 			exit $s
 		fi
 	done
+	kubectl get obi -n ${ARBITER_NS} -owide
+	#echo $(kubectl get obi -n ${ARBITER_NS} -oyaml | grep 'records' | awk '{print NR}' | tail -n1)
+	kubectl get obi -n ${ARBITER_NS} -oyaml
+	kubectl get nodes --show-labels
+	kubectl get po -n ${ARBITER_NS} --show-labels
 
 	echo "deploy policies wait 30s"
 	kubectl -n ${ARBITER_NS} apply -f $ROOT/manifests/example/executor/resource-tagger
@@ -130,6 +135,12 @@ function test_obi {
 		fi
 	done
 	echo "target node has benn labeled"
+	kubectl get obi -n ${ARBITER_NS} -owide
+	echo $(kubectl get obi -n ${ARBITER_NS} -oyaml | grep 'records' | awk '{print NR}' | tail -n1)
+	kubectl get obi -n ${ARBITER_NS} -oyaml
+	kubectl get nodes --show-labels
+	kubectl get po -n ${ARBITER_NS} --show-labels
+
 	echo "obi test done"
 }
 
