@@ -391,7 +391,7 @@ func (c *controller) fetchRouteV1Alpha1(ctx context.Context, instance *v1alpha1.
 			if unstructuredResource != nil {
 				metricName2Query, err = c.renderQuery(instance, unstructuredResource.DeepCopy())
 			} else {
-				metricName2Query, err = c.renderQuery(instance, nil)
+				metricName2Query, err = c.renderQuery(instance, &unstructured.Unstructured{Object: map[string]interface{}{}})
 			}
 			if err != nil {
 				klog.Errorf("%s Do renderQuery error: %s\n", utils.ErrorLogPrefix, err)
